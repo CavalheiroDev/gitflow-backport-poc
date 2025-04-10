@@ -4,10 +4,10 @@ on:
   pull_request_target:
     types: [closed]
     branches:
-      - 'hotfix.*'
+      - 'hotfix/**'
 
 jobs:
-  backport:
+  backport-hotfix:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +20,7 @@ jobs:
             const cleanTitle = title.replace(/\[.*?\]/g, '').trim();
             core.setOutput('processed_title', cleanTitle);
 
-      - name: Backporting
+      - name: Backporting Hotfix
         uses: kiegroup/git-backporting@main
         with:
           target-branch: develop

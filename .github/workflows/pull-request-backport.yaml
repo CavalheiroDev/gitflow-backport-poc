@@ -12,8 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Backporting
-        uses: lampajr/backporting@main
+        uses: kiegroup/git-backporting@main
         with:
           target-branch: develop
           pull-request: ${{ github.event.pull_request.url }}
           auth: ${{ secrets.GITHUB_TOKEN }}
+          git-client: github
+          git-user: GitHub Actions
+          git-email: github-actions@users.noreply.github.com
+          body-prefix: "Release: {original-pr-link}"
+          bp-branch-name: "release-${{ github.event.pull_request.head.ref }}"
+
+

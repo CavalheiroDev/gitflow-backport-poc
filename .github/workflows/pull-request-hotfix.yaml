@@ -1,14 +1,15 @@
 name: Hotfix Backport to Develop
 
 on:
-  pull_request_target:
+  pull_request:
     types: [closed]
-    branches:
-      - 'hotfix/**'
 
 jobs:
   backport-hotfix:
-    if: github.event.pull_request.merged == true
+    if: >
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'hotfix/') &&
+      github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Process PR title
@@ -31,6 +32,6 @@ jobs:
           git-email: github-actions@users.noreply.github.com
           title: "[develop] ${{ steps.process-title.outputs.processed_title }}"
           body: ${{ github.event.pull_request.body }}
-          body-prefix: "Hotfix: ${{github.event.pull_request.url}}"
+          body-prefix: "Hotfix: ${{ github.event.pull_request.url }}"
           bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
-          assignees: ${{ github.event.pull_request.user.login }} 
+          assignees: ${{ github.event.pull_request.user.login }}

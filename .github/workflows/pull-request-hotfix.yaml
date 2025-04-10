@@ -1,10 +1,10 @@
-name: Master Pull Request Backport
+name: Hotfix Backport to Develop
 
 on:
   pull_request_target:
     types: [closed]
     branches:
-      - develop
+      - 'hotfix*'
 
 jobs:
   backport:
@@ -23,16 +23,14 @@ jobs:
       - name: Backporting
         uses: kiegroup/git-backporting@main
         with:
-          target-branch: main
+          target-branch: develop
           pull-request: ${{ github.event.pull_request.url }}
           auth: ${{ secrets.GITHUB_TOKEN }}
           git-client: github
           git-user: GitHub Actions
           git-email: github-actions@users.noreply.github.com
-          title: "[main] ${{ steps.process-title.outputs.processed_title }}"
+          title: "[develop] ${{ steps.process-title.outputs.processed_title }}"
           body: ${{ github.event.pull_request.body }}
-          body-prefix: "Release: ${{github.event.pull_request.url}}"
-          bp-branch-name: "release-${{ github.event.pull_request.head.ref }}"
-          assignees: ${{ github.event.pull_request.user.login }}
-
-
+          body-prefix: "Hotfix: ${{github.event.pull_request.url}}"
+          bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
+          assignees: ${{ github.event.pull_request.user.login }} 

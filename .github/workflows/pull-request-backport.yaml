@@ -20,7 +20,7 @@ jobs:
           git-client: github
           git-user: GitHub Actions
           git-email: github-actions@users.noreply.github.com
-          title: "[main] ${{ replace(github.event.pull_request.title, '/\[.*?\]/g', '') }}"
+          title: "[main] ${{ replace(github.event.pull_request.title, '[.*]', '') }}"
           body: ${{ github.event.pull_request.body }}
           body-prefix: "Release: ${{github.event.pull_request.url}}"
           bp-branch-name: "release.${{ github.event.pull_request.head.ref }}"

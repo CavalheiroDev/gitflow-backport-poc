@@ -33,6 +33,5 @@ jobs:
           title: "[develop] ${{ steps.process-title.outputs.processed_title }}"
           body: ${{ github.event.pull_request.body }}
           bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
-          assignees: ${{ github.event.pull_request.user.login }}
           enable-err-notification: true
           labels: "auto-merge-backport"

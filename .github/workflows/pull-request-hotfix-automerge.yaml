@@ -16,4 +16,5 @@ jobs:
               GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
               MERGE_METHOD: "squash"
               MERGE_LABELS: "auto-merge-backport"
-              BASE_BRANCHES: "develop"
+              BASE_BRANCHES: "develop,dev"
+              MERGE_DELETE_BRANCH: true

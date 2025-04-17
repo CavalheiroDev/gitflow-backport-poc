@@ -2,7 +2,7 @@ name: Hotfix Backport to Develop
 
 on:
   pull_request:
-    types: [closed]
+    types: [closed, labeled, synchronize]
 
 jobs:
   backport-hotfix:
@@ -34,4 +34,5 @@ jobs:
           body: ${{ github.event.pull_request.body }}
           bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
           assignees: ${{ github.event.pull_request.user.login }}
-          dry-run: true
+          enable-err-notification: true
+          labels: "auto-merge-backport"

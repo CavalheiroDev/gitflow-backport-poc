@@ -35,3 +35,4 @@ jobs:
           bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
           enable-err-notification: true
           labels: "auto-merge-backport"
+          no-inherit-reviewers: true

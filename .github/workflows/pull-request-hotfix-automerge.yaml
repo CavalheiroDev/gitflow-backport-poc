@@ -18,3 +18,5 @@ jobs:
               MERGE_LABELS: "auto-merge-backport"
               BASE_BRANCHES: "develop,dev"
               MERGE_DELETE_BRANCH: true
+              MERGE_RETRIES: 6
+              MERGE_RETRY_DELAY: 5000

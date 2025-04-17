@@ -2,6 +2,8 @@ name: Hotfix Backport to Develop
 
 on:
   pull_request:
+    branches:
+      - 'main'
     types: [closed]
 
 jobs:
@@ -32,6 +34,7 @@ jobs:
           git-email: github-actions@users.noreply.github.com
           title: "[develop] ${{ steps.process-title.outputs.processed_title }}"
           body: ${{ github.event.pull_request.body }}
-          body-prefix: "Hotfix: ${{ github.event.pull_request.url }}"
           bp-branch-name: "backport-${{ github.event.pull_request.head.ref }}"
-          assignees: ${{ github.event.pull_request.user.login }}
+          enable-err-notification: true
+          labels: "auto-merge-backport"
+          no-inherit-reviewers: true

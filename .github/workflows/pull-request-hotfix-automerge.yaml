@@ -1,15 +1,14 @@
 name: Hotfix Pull Request Automerge
 
 on:
-    workflow_run:
-      workflows: ["Hotfix Backport to Develop"]
-      types:
-        - completed
+    pull_request:
+        branches:
+            - 'develop'
+        types: [opened, labeled, synchronize]
 
 jobs:
     auto-merge-backport:
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
           - uses: pascalgn/automerge-action@v0.16.4
             env:

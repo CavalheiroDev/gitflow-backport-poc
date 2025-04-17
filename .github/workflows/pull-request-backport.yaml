@@ -31,7 +31,6 @@ jobs:
           git-email: github-actions@users.noreply.github.com
           title: "[main] ${{ steps.process-title.outputs.processed_title }}"
           body: ${{ github.event.pull_request.body }}
-          body-prefix: "Release: ${{github.event.pull_request.url}}"
           bp-branch-name: "release-${{ github.event.pull_request.head.ref }}"
           assignees: ${{ github.event.pull_request.user.login }}
 

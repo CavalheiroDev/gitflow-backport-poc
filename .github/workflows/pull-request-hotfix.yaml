@@ -1,13 +1,13 @@
 name: Hotfix Backport to Develop
 
 on:
-  pull_request:
-    branches:
-      - 'main'
-    types: [closed]
+  pull_request_review:
+  check_run:
+    types: [completed]
 
 jobs:
-  build:
+  backport-hotfix:
+    if: startsWith(github.head_ref, 'hotfix/')
     name: Gitflow
     runs-on: ubuntu-latest
     steps:
@@ -17,5 +17,5 @@ jobs:
         dev: develop
         master: main
         label: hotfix
-        auto-merge: true
+        auto-merge: false
         require-merge: true

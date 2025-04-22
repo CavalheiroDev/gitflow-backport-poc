@@ -2,9 +2,9 @@ name: Hotfix Backport to Develop
 
 on:
   pull_request:
-    branches:
-      - 'hotfix/**'
     types: [closed]
+    branches:
+      - main
 
 jobs:
   backport-hotfix:
@@ -18,4 +18,4 @@ jobs:
         master: main
         label: hotfix
         auto-merge: false
-        require-merge: true
+        require-merge: false

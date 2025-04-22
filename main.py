@@ -16,5 +16,5 @@ print("Teste 13")
 print("Teste 14")
 print("Teste 15")
 print("Teste 16")
-print("Teste 17")	
+
 print("Testes finalizados com sucesso!")

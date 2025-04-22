@@ -1,13 +1,13 @@
 name: Hotfix Backport to Develop
 
 on:
-  pull_request_review:
-  check_run:
-    types: [completed]
+  pull_request:
+    branches:
+      - 'hotfix/**'
+    types: [closed]
 
 jobs:
   backport-hotfix:
-    if: startsWith(github.head_ref, 'hotfix/')
     name: Gitflow
     runs-on: ubuntu-latest
     steps:
